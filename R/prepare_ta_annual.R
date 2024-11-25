@@ -20,7 +20,7 @@
 
 library(tidyverse)
 
-ta_datapath <- function(filename) file.path("data", "raw", filename)
+ta_datapath <- function(filename) rprojroot::is_rstudio_project$find_file("data", "raw", filename)
 
 ## Get annual global temperature anamoly from 0ad to 1980
 read_ta_annual_global_0to1980 <- function() {
@@ -102,5 +102,6 @@ read_ta_annual <- function() {
 }
 
 ta_annual <- read_ta_annual()
-save(ta_annual, file = file.path("data", "rda", "ta_annual.rda"))
+save(ta_annual, file = rprojroot::is_rstudio_project$find_file("data", "rda", "ta_annual.rda"))
+
 
